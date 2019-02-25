@@ -1,0 +1,50 @@
+/h2
+  | Log in
+/= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .field
+    = f.label :email
+    br
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .field
+    = f.label :password
+    br
+    = f.password_field :password, autocomplete: "current-password"
+  - if devise_mapping.rememberable?
+    .field
+      = f.check_box :remember_me
+      = f.label :remember_me
+  .actions
+    = f.submit "Log in"
+/ = render "devise/shared/links"
+main.login-form
+  .cotainer
+    .row.justify-content-center
+      .col-md-4
+        .card
+          .card-header Log in
+          .card-body
+            = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+              .form-group.row
+                /label.col-md-4.col-form-label.text-md-right for="email_address"  
+                = f.label :email, class: "col-md-4 col-form-label text-md-right"
+                .col-md-6
+                  = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+                  /input#email_address.form-control autofocus="" name="email-address" required="" type="text" /
+              .form-group.row
+                = f.label :password, class: "col-md-4 col-form-label text-md-right"
+                /label.col-md-4.col-form-label.text-md-right for="password"  Password
+                .col-md-6
+                  = f.password_field :password, autocomplete: "current-password", class: "form-control"
+                  /input#password.form-control name="password" required="" type="password" /
+              /.form-group.row
+                .col-md-6.offset-md-4
+                  .checkbox
+                    label
+                      input name="remember" type="checkbox" /
+                      | Remember Me
+              .col-md-6.offset-md-4
+                = f.submit "Log in", class: "btn btn-primary"
+                /button.btn.btn-primary type="submit" 
+                  | Register
+                /a.btn.btn-link href="#" 
+                  | Forgot Your Password?
