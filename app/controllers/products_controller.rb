@@ -51,6 +51,14 @@ class ProductsController < ApplicationController
     end
   end
 
+  def get_products
+    search_string = params[:q]
+    products = Product.where(name: /.*#{search_string}.*/i)
+    respond_to do |format|
+      format.json { render json: { items: products.map { |product| { id: product.id.to_s, code: product.name } }, total_count: products.length, incomplete_results: false } }
+    end
+  end
+
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy

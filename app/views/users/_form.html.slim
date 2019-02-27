@@ -13,4 +13,6 @@
   .row
     .col
       = f.input :name
+    .col
+      = f.collection_select :product_ids, f.object.products, :id, :name, {}, {:selected => "daf", multiple: true, class: 'product-select2'}
   .actions = f.submit

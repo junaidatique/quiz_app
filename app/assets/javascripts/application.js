@@ -15,6 +15,7 @@
 //= require activestorage
 //= require turbolinks
 //= require datatables
+//= require select2
 //= require_tree .
 
 $(document).ready(function () {
