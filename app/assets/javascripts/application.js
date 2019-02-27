@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require datatables
 //= require select2
+//= require cocoon
 //= require_tree .
 
 $(document).ready(function () {

@@ -1,0 +1,11 @@
+.row
+  .col
+    - if defined? back_path
+      = link_to back_path, class: 'btn btn-primary btn-flat' do
+        i.fa.fa-angle-double-left
+        | &nbsp; Back
+  .col.text-right
+    - if defined? edit_path
+      = link_to edit_path, class: 'btn btn-info btn-flat'
+        i.fa.fa-pencil
+        | &nbsp; Edit

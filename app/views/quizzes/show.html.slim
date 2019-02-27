@@ -1,18 +1,54 @@
-p#notice = notice
+.row
+  .col
+    h1 = @quiz.title
+.row
+  .col
+    strong
+      | Created By
+  .col
+    = @quiz.user.name
+  .col
+    strong
+      | Product
+  .col
+    = @quiz.product.name
+.row
+  .col
+    br
+    
+.row
+  .col
+    strong
+      | Group
+  .col
+    = @quiz.group.name
+  .col
+    strong
+      
+  .col
+.row
+  .col
+    br
 
-p
-  strong User:
-  = @quiz.user
-p
-  strong Product:
-  = @quiz.product
-p
-  strong Group:
-  = @quiz.group
-p
-  strong Title:
-  = @quiz.title
-
-=> link_to 'Edit', edit_quiz_path(@quiz)
-'|
-=< link_to 'Back', quizzes_path
+.row
+  .col
+    h3
+      | Questions
+- @quiz.answers.each do |answer|
+  .card    
+    .card-body
+      .card-title
+        = answer.question
+      .card-text
+        ul
+          li class="#{answer.correct_answer == 1 ? 'text-success' : ''}" 
+            = answer.option_1
+          li class="#{answer.correct_answer == 2 ? 'text-success' : ''}" 
+            = answer.option_2
+          li class="#{answer.correct_answer == 3 ? 'text-success' : ''}" 
+            = answer.option_3
+          li class="#{answer.correct_answer == 4 ? 'text-success' : ''}" 
+            = answer.option_4
+          
+br
+= render 'layouts/partials/actions_buttons', back_path: quizzes_path, edit_path: edit_quiz_path(@quiz)
