@@ -1,4 +1,4 @@
-= simple_form_for @product do |f|
+= simple_form_for(@group) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
@@ -6,4 +6,5 @@
     .col
       = f.input :name
     .col
-  == render 'layouts/partials/form_action_buttons', options: { form: f, index_path: products_path}
+  == render 'layouts/partials/form_action_buttons', options: { form: f, index_path: groups_path}
+  

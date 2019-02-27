@@ -1,0 +1,15 @@
+.row
+  .col
+    = link_to options[:index_path], class: 'btn btn-primary btn-flat' do
+      i.fa.fa-angle-double-left
+      | &nbsp; Back
+  
+  .col.text-right
+    = options[:form].button :submit, id: 'create_update_user', class: 'btn btn-success btn-flat' do
+      i.fa.fa-refresh
+      - if options[:form].object.id.nil?
+        | &nbsp; Create
+      - else
+        | &nbsp; Update
+      | &nbsp;
+      = options[:form].object.class.name.titleize.camelcase

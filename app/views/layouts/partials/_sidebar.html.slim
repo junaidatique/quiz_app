@@ -8,8 +8,11 @@ ul.list-unstyled.components
   li class="#{params[:controller] == "products" ? 'active' : ''}"
     = link_to products_path do 
       | Products
+  li class="#{params[:controller] == "groups" ? 'active' : ''}"
+    = link_to groups_path do 
+      | Groups
     /a href="#"  Home 2
-  li
+  /li
     a href="#"  Portfolio
-  li
+  /li
     a href="#"  Contact

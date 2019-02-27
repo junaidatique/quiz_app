@@ -1,10 +1,7 @@
 = simple_form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      ul
-        - @user.errors.full_messages.each do |message|
-          li = message
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  
   .row
     .col
       = f.input :email
@@ -13,6 +10,12 @@
   .row
     .col
       = f.input :name
+    .col      
+      = f.input :employee_code
+  .row
     .col
-      = f.collection_select :product_ids, f.object.products, :id, :name, {}, {:selected => "daf", multiple: true, class: 'product-select2'}
-  .actions = f.submit
+      = f.association :groups
+    .col      
+      = f.association :products
+  == render 'layouts/partials/form_action_buttons', options: { form: f, index_path: users_path}
+  
