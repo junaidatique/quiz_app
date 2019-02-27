@@ -116,4 +116,10 @@ a[aria-expanded="true"] {
   width: 100%;
   min-height: 100vh;
   transition: all 0.3s;
+  h1 {
+    font-size: 2rem;
+    padding-bottom: 1rem;
+  }
 }
+
+@import "datatables";
