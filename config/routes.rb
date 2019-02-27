@@ -1,4 +1,5 @@
 Rails.application.routes.draw do  
+  resources :quizzes
   resources :groups
   resources :products  do 
     collection do 

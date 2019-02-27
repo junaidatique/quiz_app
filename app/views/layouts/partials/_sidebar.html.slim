@@ -11,6 +11,9 @@ ul.list-unstyled.components
   li class="#{params[:controller] == "groups" ? 'active' : ''}"
     = link_to groups_path do 
       | Groups
+  li class="#{params[:controller] == "quizzes" ? 'active' : ''}"
+    = link_to quizzes_path do 
+      | Quizzes
     /a href="#"  Home 2
   /li
     a href="#"  Portfolio

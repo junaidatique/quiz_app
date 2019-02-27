@@ -1,0 +1,27 @@
+h1 Listing Quizzes
+
+table class="table table-striped datatable"
+  thead
+    tr
+      th Title
+      th Created by
+      th Product
+      th Group
+      th Actions
+
+  tbody
+    - @quizzes.each do |quiz|
+      tr
+        td = quiz.title
+        td = quiz.user.name
+        td = quiz.product.name
+        td = quiz.group.name
+        td 
+          = link_to 'Show', quiz
+          |  |  
+          = link_to 'Edit', edit_quiz_path(quiz)
+          /= link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+.text-center
+  = link_to 'New Quiz', new_quiz_path, class: "btn btn-primary"

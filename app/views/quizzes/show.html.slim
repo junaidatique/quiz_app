@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong User:
+  = @quiz.user
+p
+  strong Product:
+  = @quiz.product
+p
+  strong Group:
+  = @quiz.group
+p
+  strong Title:
+  = @quiz.title
+
+=> link_to 'Edit', edit_quiz_path(@quiz)
+'|
+=< link_to 'Back', quizzes_path

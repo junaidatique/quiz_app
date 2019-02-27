@@ -1,0 +1,20 @@
+= simple_form_for(@quiz) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+  .row
+    .col
+      = f.input :title
+    .col
+      = f.association :product
+  .row
+    .col
+      = f.association :group
+      /= f.association :user
+    .col
+    
+    
+    
+
+  .form-actions
+    == render 'layouts/partials/form_action_buttons', options: { form: f, index_path: quizzes_path}
