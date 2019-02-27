@@ -6,7 +6,7 @@ table class="table table-striped datatable"
       th Title
       th Created by
       th Product
-      th Group
+      /th Group
       th Actions
 
   tbody
@@ -15,8 +15,10 @@ table class="table table-striped datatable"
         td = quiz.title
         td = quiz.user.name
         td = quiz.product.name
-        td = quiz.group.name
+        /td = quiz.group.name
         td 
+          = link_to 'Assign Quiz', assign_quiz_path(quiz)
+          |  |  
           = link_to 'Show', quiz
           |  |  
           = link_to 'Edit', edit_quiz_path(quiz)

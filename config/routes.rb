@@ -1,5 +1,11 @@
 Rails.application.routes.draw do  
-  resources :quizzes
+  resources :quizzes do 
+    member do 
+      get 'attempt'
+      get 'assign'
+      post 'assignment'
+    end
+  end
   resources :groups
   resources :products  do 
     collection do 

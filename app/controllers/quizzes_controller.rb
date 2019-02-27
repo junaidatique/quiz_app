@@ -1,5 +1,5 @@
 class QuizzesController < ApplicationController
-  before_action :set_quiz, only: [:show, :edit, :update, :destroy]
+  before_action :set_quiz, only: [:show, :edit, :update, :destroy, :assign]
 
   # GET /quizzes
   # GET /quizzes.json
@@ -59,6 +59,15 @@ class QuizzesController < ApplicationController
       format.html { redirect_to quizzes_url, notice: 'Quiz was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def assign
+
+  end
+
+  def assignment
+    group = Group.find(params[:group])
+    puts group.users.inspect
   end
 
   private

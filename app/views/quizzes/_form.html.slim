@@ -7,19 +7,19 @@
       = f.input :title
     .col
       = f.association :product
-  .row
+  /.row
     .col
       = f.association :group
       /= f.association :user
     .col
   .row
     .col
-      h3 Answers
+      h3 Questions
       #ansers
         = f.simple_fields_for :answers do |answer|
           = render 'answer_fields', f: answer
   .links.text-right
-    = link_to_add_association 'add answer', f, :answers, class: 'btn btn-primary btn-flat'   
+    = link_to_add_association 'Add Question', f, :answers, class: 'btn btn-primary btn-flat'   
     
     
   br

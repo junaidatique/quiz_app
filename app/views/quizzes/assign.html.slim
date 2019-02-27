@@ -1,0 +1,52 @@
+= simple_form_for(@quiz, :url => assignment_quiz_path, :method => :post) do |f|
+  .row
+    .col
+      h1 = @quiz.title
+  .row
+    .col
+      strong
+        | Created By
+    .col
+      = @quiz.user.name
+    .col
+      strong
+        | Product
+    .col
+      = @quiz.product.name
+  .row
+    .col
+      br
+  .row
+    .col
+      = label_tag "Group" 
+      = select_tag "group", options_from_collection_for_select(Group.all, 'id', 'name', ''), class: 'form-control'
+    .col
+    /.col
+      = label_tag "Users" 
+      = select_tag "user", options_from_collection_for_select(User.all, 'id', 'name', ''), class: 'form-control', multiple: true
+  .row
+    .col.text-right
+      = f.button :submit, "Assign Quiz", class: 'btn btn-success btn-flat'
+
+  /.row
+    .col
+      h3
+        | Questions
+  /- @quiz.answers.each do |answer|
+    .card    
+      .card-body
+        .card-title
+          = answer.question
+        .card-text
+          ul
+            li class="#{answer.correct_answer == 1 ? 'text-success' : ''}" 
+              = answer.option_1
+            li class="#{answer.correct_answer == 2 ? 'text-success' : ''}" 
+              = answer.option_2
+            li class="#{answer.correct_answer == 3 ? 'text-success' : ''}" 
+              = answer.option_3
+            li class="#{answer.correct_answer == 4 ? 'text-success' : ''}" 
+              = answer.option_4
+            
+  br
+  /= render 'layouts/partials/actions_buttons', back_path: quizzes_path, edit_path: edit_quiz_path(@quiz)
