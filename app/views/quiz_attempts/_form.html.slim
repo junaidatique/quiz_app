@@ -2,13 +2,17 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs
-    = f.association :quiz
-    = f.association :user
-    = f.association :group
-    = f.input :total_questions
-    = f.input :correct_answer
-    = f.input :status_cd
+  .row
+    .col
+      h3 = @quiz_attempt.quiz.title
+    .col
+  
+  .row
+    .col
+      / h3 Questions
+      #ansers
+        = f.simple_fields_for :attempted_questions do |attempted_question|          
+          = render 'attempted_question_fields', f: attempted_question
 
-  .form-actions
-    = f.button :submit
+  .form-actions.text-right
+    = f.button :submit, data: { confirm: 'Are you sure? You wont be able to answer again.' }, class: 'btn btn-info btn-flat'

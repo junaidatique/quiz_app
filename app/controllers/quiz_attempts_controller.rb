@@ -10,6 +10,7 @@ class QuizAttemptsController < ApplicationController
   # GET /quiz_attempts/1
   # GET /quiz_attempts/1.json
   def show
+    redirect_to quiz_attempts_path
   end
 
   # GET /quiz_attempts/new
@@ -19,6 +20,20 @@ class QuizAttemptsController < ApplicationController
 
   # GET /quiz_attempts/1/edit
   def edit
+    if @quiz_attempt.status_cd == 1
+      redirect_to quiz_attempts_path
+    end
+    @quiz_attempt.attempted_questions.destroy_all
+    @quiz_attempt.quiz.answers.each do |answer|
+      attempted_question = @quiz_attempt.attempted_questions.new
+      attempted_question.question = answer.question
+      attempted_question.option_1 = answer.option_1
+      attempted_question.option_2 = answer.option_2
+      attempted_question.option_3 = answer.option_3
+      attempted_question.option_4 = answer.option_4
+      attempted_question.correct_answer = answer.correct_answer
+      attempted_question.save
+    end
   end
 
   # POST /quiz_attempts
@@ -42,6 +57,7 @@ class QuizAttemptsController < ApplicationController
   def update
     respond_to do |format|
       if @quiz_attempt.update(quiz_attempt_params)
+        @quiz_attempt.check_answers
         format.html { redirect_to @quiz_attempt, notice: 'Quiz attempt was successfully updated.' }
         format.json { render :show, status: :ok, location: @quiz_attempt }
       else
@@ -69,6 +85,6 @@ class QuizAttemptsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_attempt_params
-      params.require(:quiz_attempt).permit(:quiz_id, :user_id, :group_id, :total_questions, :correct_answer, :status_cd)
+      params.require(:quiz_attempt).permit(attempted_questions_attributes: [:id, :submitted_answer])
     end
 end

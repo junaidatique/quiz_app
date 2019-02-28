@@ -19,6 +19,6 @@
 //= require cocoon
 //= require_tree .
 
-$(document).ready(function () {
+document.addEventListener("turbolinks:load", function () {
   $(".datatable").dataTable();
 });

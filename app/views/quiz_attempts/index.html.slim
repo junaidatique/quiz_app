@@ -1,15 +1,28 @@
-h1 Listing Quiz Attempts
-
-table#dttb-quiz_attempts.responsive.nowrap.table.table-hover data-sort="true" data-source="#{url_for(format: :json)}"
+h1 Assigned Quizzes
+table class="table table-striped datatable"
   thead
     tr
-      th data-data="quiz" Quiz
-      th data-data="user" User
-      th data-data="group" Group
-      th data-data="total_questions" Total questions
-      th data-data="correct_answer" Correct answer
-      th data-data="status_cd" Status cd
-      th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"
+      th Quiz
+      th User
+      th Total Questions
+      th Correct Answers
+      th Status
+      th Actions
 
+  tbody
+    - @quiz_attempts.each do |quiz_attempt|
+      tr
+        td = quiz_attempt.quiz.title
+        td = quiz_attempt.user.name
+        td = quiz_attempt.total_questions
+        td = quiz_attempt.correct_answer
+        td = quiz_attempt.status.to_s.titleize
+        td 
+          /= link_to 'Show', quiz_attempt, class: "btn btn-primary"
+          - if current_user.id == quiz_attempt.user.id and quiz_attempt.status_cd == 0
+            = link_to 'Attempt', edit_quiz_attempt_path(quiz_attempt), data: { confirm: 'Are you ready to attemp this quiz?' }
+          /= link_to 'Destroy', quiz_attempt, data: { confirm: 'Are you sure?' }, method: :delete
 
-= link_to 'New Quiz attempt', new_quiz_attempt_path
+/br
+/.text-center
+  = link_to 'New quiz_attempt', new_quiz_attempt_path, class: "btn btn-primary"

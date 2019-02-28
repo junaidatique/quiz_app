@@ -1,0 +1,11 @@
+.nested-fields
+  
+  .row
+    .col
+      h4      
+        = f.object.question  
+  .row
+    .col      
+      = f.input :submitted_answer, label: '', as: :radio_buttons, collection: [['1', f.object.option_1], ['2', f.object.option_2], ['3', f.object.option_3], ['4', f.object.option_4]], label_method: :second, value_method: :first    
+    .col.text-right
+      
