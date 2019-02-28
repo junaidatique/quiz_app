@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_27_155243) do
+ActiveRecord::Schema.define(version: 2019_02_27_200735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,20 @@ ActiveRecord::Schema.define(version: 2019_02_27_155243) do
     t.bigint "user_id", null: false
   end
 
+  create_table "quiz_attempts", force: :cascade do |t|
+    t.bigint "quiz_id"
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.integer "total_questions"
+    t.integer "correct_answer"
+    t.integer "status_cd"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_quiz_attempts_on_group_id"
+    t.index ["quiz_id"], name: "index_quiz_attempts_on_quiz_id"
+    t.index ["user_id"], name: "index_quiz_attempts_on_user_id"
+  end
+
   create_table "quizzes", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "product_id"
@@ -77,6 +91,9 @@ ActiveRecord::Schema.define(version: 2019_02_27_155243) do
   end
 
   add_foreign_key "answers", "quizzes"
+  add_foreign_key "quiz_attempts", "groups"
+  add_foreign_key "quiz_attempts", "quizzes"
+  add_foreign_key "quiz_attempts", "users"
   add_foreign_key "quizzes", "groups"
   add_foreign_key "quizzes", "products"
   add_foreign_key "quizzes", "users"

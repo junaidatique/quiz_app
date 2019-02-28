@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Quiz:
+  = @quiz_attempt.quiz
+p
+  strong User:
+  = @quiz_attempt.user
+p
+  strong Group:
+  = @quiz_attempt.group
+p
+  strong Total questions:
+  = @quiz_attempt.total_questions
+p
+  strong Correct answer:
+  = @quiz_attempt.correct_answer
+p
+  strong Status cd:
+  = @quiz_attempt.status_cd
+
+=> link_to 'Edit', edit_quiz_attempt_path(@quiz_attempt)
+'|
+=< link_to 'Back', quiz_attempts_path

@@ -19,11 +19,13 @@
   .row
     .col
       = label_tag "Group" 
-      = select_tag "group", options_from_collection_for_select(Group.all, 'id', 'name', ''), class: 'form-control'
+      = select_tag "group", options_from_collection_for_select(Group.all, 'id', 'name', ''), class: 'form-control', include_blank: true    
     .col
-    /.col
       = label_tag "Users" 
-      = select_tag "user", options_from_collection_for_select(User.all, 'id', 'name', ''), class: 'form-control', multiple: true
+      = select_tag "users[]", options_from_collection_for_select(User.all, 'id', 'name', ''), class: 'form-control', multiple: true
+  .row
+    .col
+      br
   .row
     .col.text-right
       = f.button :submit, "Assign Quiz", class: 'btn btn-success btn-flat'

@@ -69,3 +69,4 @@ gem 'simple_form'
 gem 'select2-rails'
 gem 'rb-readline'
 gem "cocoon"
+gem 'simple_enum'

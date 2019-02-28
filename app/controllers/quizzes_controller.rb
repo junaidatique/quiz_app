@@ -1,5 +1,5 @@
 class QuizzesController < ApplicationController
-  before_action :set_quiz, only: [:show, :edit, :update, :destroy, :assign]
+  before_action :set_quiz, only: [:show, :edit, :update, :destroy, :assign, :assignment]
 
   # GET /quizzes
   # GET /quizzes.json
@@ -66,8 +66,17 @@ class QuizzesController < ApplicationController
   end
 
   def assignment
-    group = Group.find(params[:group])
-    puts group.users.inspect
+    puts params.inspect    
+    users = []
+    users = users + Group.find(params[:group]).users unless params[:group].blank?    
+    users = users + User.find(params[:users]) unless params[:users].blank?
+    puts users.inspect
+    users.each do |user|
+      q = QuizAttempt.where(user_id: user.id, status_cd: 0, quiz_id: @quiz.id).first_or_create            
+      q.total_questions = @quiz.answers.count      
+      q.save!
+    end
+    redirect_to @quiz, notice: 'Quiz was successfully assigned.'
   end
 
   private

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do  
+  resources :quiz_attempts
   resources :quizzes do 
     member do 
       get 'attempt'

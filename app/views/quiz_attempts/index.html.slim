@@ -1,0 +1,15 @@
+h1 Listing Quiz Attempts
+
+table#dttb-quiz_attempts.responsive.nowrap.table.table-hover data-sort="true" data-source="#{url_for(format: :json)}"
+  thead
+    tr
+      th data-data="quiz" Quiz
+      th data-data="user" User
+      th data-data="group" Group
+      th data-data="total_questions" Total questions
+      th data-data="correct_answer" Correct answer
+      th data-data="status_cd" Status cd
+      th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"
+
+
+= link_to 'New Quiz attempt', new_quiz_attempt_path
