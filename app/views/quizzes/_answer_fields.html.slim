@@ -16,6 +16,6 @@
     .col
       = f.input :correct_answer, as: :radio_buttons, collection: [['1', 'Option 1'], ['2', 'Option 2'], ['3', 'Option 3'], ['4', 'Option 4']], label_method: :second, value_method: :first    
     .col.text-right
-      = link_to_remove_association "remove answer", f, class: 'btn btn-danger btn-sm'
+      = link_to_remove_association "Remove answer", f, class: 'btn btn-danger btn-sm'
 
   br

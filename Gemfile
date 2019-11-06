@@ -70,3 +70,4 @@ gem 'select2-rails'
 gem 'rb-readline'
 gem "cocoon"
 gem 'simple_enum'
+gem 'cancancan', '~> 2.0'

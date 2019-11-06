@@ -4,7 +4,12 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
   def index
-    @quizzes = Quiz.all
+    if current_user.admin?
+      @quizzes = Quiz.all
+    else
+      @quizzes = Quiz.where(product_id: current_user.products.map(&:id)).all
+    end
+    
   end
 
   # GET /quizzes/1

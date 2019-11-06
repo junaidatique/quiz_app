@@ -14,6 +14,11 @@
       = f.input :employee_code
   .row
     .col
+      = f.input :role, collection: enum_option_pairs(User, :role), as: :radio_buttons 
+    .col      
+      /= f.input :employee_code
+  .row
+    .col
       = f.association :groups
     .col      
       = f.association :products

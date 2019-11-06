@@ -1,22 +1,26 @@
 .sidebar-header
   h3 Telenor B2B Quiz Application
 ul.list-unstyled.components  
-  li class="#{params[:controller] == "users" ? 'active' : ''}"
-    = link_to users_path do 
-      | Users
-    /a href="#"  Home 1
-  li class="#{params[:controller] == "products" ? 'active' : ''}"
-    = link_to products_path do 
-      | Products
-  li class="#{params[:controller] == "groups" ? 'active' : ''}"
-    = link_to groups_path do 
-      | Groups
-  li class="#{params[:controller] == "quizzes" ? 'active' : ''}"
-    = link_to quizzes_path do 
-      | Quizzes
-  li class="#{params[:controller] == "quiz_attempts" ? 'active' : ''}"
-    = link_to quiz_attempts_path do 
-      | Assinged Quizzes
+  - if can? :read, User
+    li class="#{params[:controller] == "users" ? 'active' : ''}"
+      = link_to users_path do 
+        | Users  
+  - if can? :read, Product
+    li class="#{params[:controller] == "products" ? 'active' : ''}"
+      = link_to products_path do 
+        | Products
+  - if can? :read, Group        
+    li class="#{params[:controller] == "groups" ? 'active' : ''}"
+      = link_to groups_path do 
+        | Groups
+  - if can? :read, Quiz
+    li class="#{params[:controller] == "quizzes" ? 'active' : ''}"
+      = link_to quizzes_path do 
+        | Quizzes
+  - if can? :read, QuizAttempt
+    li class="#{params[:controller] == "quiz_attempts" ? 'active' : ''}"
+      = link_to quiz_attempts_path do 
+        | Assinged Quizzes
     /a href="#"  Home 2
   /li
     a href="#"  Portfolio

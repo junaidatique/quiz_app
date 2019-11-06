@@ -4,7 +4,12 @@ class QuizAttemptsController < ApplicationController
   # GET /quiz_attempts
   # GET /quiz_attempts.json
   def index
-    @quiz_attempts = QuizAttempt.all
+    if current_user.admin?
+      @quiz_attempts = QuizAttempt.all
+    else
+      @quiz_attempts = QuizAttempt.where(user_id: current_user.id).all
+    end
+    
   end
 
   # GET /quiz_attempts/1
